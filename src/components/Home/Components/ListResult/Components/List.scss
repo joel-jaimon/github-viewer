@@ -1,0 +1,25 @@
+.__list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  background-color: white;
+  width: calc(100% - 40px);
+  margin-bottom: 5px;
+  padding: 0px 20px 0px 20px;
+  .MuiAvatar-root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    margin-right: 5px;
+  }
+  .__user_info {
+    display: flex;
+    align-items: center;
+    p {
+      font-weight: 500;
+    }
+  }
+}

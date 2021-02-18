@@ -1,0 +1,9 @@
+.__listResult {
+  width: 100%;
+  margin-top: 15px;
+  height: 480px;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
+}
