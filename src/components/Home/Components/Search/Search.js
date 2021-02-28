@@ -49,8 +49,7 @@ const Search = ({ setResult, setLoad }) => {
           },
           headers: {
             "Content-Type": "application/json",
-            Authorization:
-              "bearer " + "f2a6532a7475663bef421d8019c5a0ca308b6a22",
+            Authorization: "bearer " + "_______ADD YOUR TOKEN HERE",
           },
         }).then((result) => {
           if (result.data.data) {
