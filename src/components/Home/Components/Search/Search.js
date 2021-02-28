@@ -22,7 +22,7 @@ const Search = ({ setResult, setLoad }) => {
           data: {
             query: `
           query{
-            search(query:"${e}", type:REPOSITORY,first:100){
+            search(query:"${e}", type:REPOSITORY,first:10){
           edges {
                 node {
                   ... on Repository {
@@ -50,7 +50,7 @@ const Search = ({ setResult, setLoad }) => {
           headers: {
             "Content-Type": "application/json",
             Authorization:
-              "bearer " + "d90b4b1946e2ea804bd0081e70ce9038928ed3a2",
+              "bearer " + "f2a6532a7475663bef421d8019c5a0ca308b6a22",
           },
         }).then((result) => {
           if (result.data.data) {
