@@ -8,7 +8,7 @@ const RenderInfo = (arg) => {
 };
 
 const InfoModals = (props) => {
-  console.log(props);
+  const { data } = props.param.modal;
   return (
     <div className="_modal-container">
       <CloseIcon
@@ -18,29 +18,31 @@ const InfoModals = (props) => {
       <div className="__modal-header">
         <img src="https://i.pravatar.cc/100" alt="Wierd Rick" />
         <span>
-          <h3>Wierd Rick</h3>
+          <h2>{data.name}</h2>
           <div className="_eval">
-            <FiberManualRecordIcon className="__dot" />
-            <small>Alive - Cronenberg</small>
+            <small>{data.description}</small>
           </div>
+          <small className="created_by">
+            <em> {`Created By: ${data.nameWithOwner.split("/")[0]}`}</em>
+          </small>
         </span>
       </div>
       <div className="__header-body">
         <div className="__info">
-          <strong>Gender</strong>
-          <p>Male</p>
+          <strong>Stars</strong>
+          <p>{data.stargazers.totalCount}</p>
         </div>
         <div className="__info">
-          <strong>Gender</strong>
-          <p>Male</p>
+          <strong>Forks</strong>
+          <p>{data.forks.totalCount}</p>
         </div>
         <div className="__info">
-          <strong>Gender</strong>
-          <p>Male</p>
+          <strong>Primary Language</strong>
+          <p>{data.primaryLanguage.name}</p>
         </div>
         <div className="__info">
-          <strong>Gender</strong>
-          <p>Male</p>
+          <strong>Last Modified</strong>
+          <p>{new Date(data.updatedAt).toString().slice(0, 16)}</p>
         </div>
       </div>
     </div>

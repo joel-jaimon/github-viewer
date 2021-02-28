@@ -4,12 +4,14 @@ import Search from "./Components/Search/Search";
 import "./Home.scss";
 
 const Home = (props) => {
+  const [result, setResult] = useState([]);
+  const [load, setLoad] = useState(false);
   return (
     <div id="__home-container">
-      <h1>Rick and Morty Search</h1>
+      <h1>Search For Repositories</h1>
       <div className="__interact-container">
-        <Search />
-        <ListResult />
+        <Search setLoad={setLoad} setResult={setResult} />
+        <ListResult load={load} result={result} />
       </div>
     </div>
   );

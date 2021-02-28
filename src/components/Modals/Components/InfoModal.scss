@@ -10,7 +10,7 @@
 
 ._modal-container {
   position: relative;
-  height: 250px;
+  height: auto;
   width: 300px;
   background-color: whitesmoke;
   border-radius: 15px;
@@ -58,4 +58,14 @@
     font-weight: 500;
     margin: 0px;
   }
+}
+
+.created_by {
+  font-size: 12px;
+  em {
+    font-weight: 500;
+  }
+}
+h2 {
+  margin-bottom: 5px;
 }

@@ -1,12 +1,77 @@
-import React from "react";
+import React, { useState } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import "./Search.scss";
+const axios = require("axios");
 
-const Search = () => {
+const Search = ({ setResult, setLoad }) => {
+  let timeout;
+  const handleSearch = (e) => {
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+    if (e.length === 0) {
+      setResult([]);
+      setLoad(false);
+    }
+    if (e.length > 1) {
+      setLoad("loading");
+      timeout = setTimeout(() => {
+        axios({
+          url: "https://api.github.com/graphql",
+          method: "post",
+          data: {
+            query: `
+          query{
+            search(query:"${e}", type:REPOSITORY,first:100){
+          edges {
+                node {
+                  ... on Repository {
+                    name
+                    openGraphImageUrl
+                    description
+                    primaryLanguage{
+                      name
+                    }
+                      nameWithOwner
+                    stargazers {
+                      totalCount
+                    }
+                    forks {
+                      totalCount
+                    }
+                    updatedAt
+                  }
+                }
+              }
+            }
+          }
+          `,
+          },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization:
+              "bearer " + "d90b4b1946e2ea804bd0081e70ce9038928ed3a2",
+          },
+        }).then((result) => {
+          if (result.data.data) {
+            setLoad(false);
+            console.log(result.data.data.search.edges);
+            setResult(result.data.data.search.edges);
+          } else {
+            setLoad("no-results");
+          }
+        });
+      }, 1000);
+    }
+  };
   return (
     <div className="__input-container">
       <SearchIcon />
-      <input type="text" placeholder="Search for a contact" />
+      <input
+        onChange={(e) => handleSearch(e.target.value)}
+        type="text"
+        placeholder="Search for a contact"
+      />
     </div>
   );
 };
